@@ -8,7 +8,7 @@ To register your mod with the OpenUpdater simply add the following block of code
 ```
 		if ((event.getSourceFile().getName().endsWith(".jar")) && event.getSide().isClient()) {
 			try {
-				Class.forName("pcl.mud.ModUpdateDetector").getDeclaredMethod("registerMod", ModContainer.class, URL.class, URL.class).invoke(null, FMLCommonHandler.instance().findContainerFor(this),
+				Class.forName("pcl.mud.OpenUpdater").getDeclaredMethod("registerMod", ModContainer.class, URL.class, URL.class).invoke(null, FMLCommonHandler.instance().findContainerFor(this),
 								new URL("http://somewebsite.com/latestbuild.xml"),
 								new URL("http://somewebsite.com/changelog.txt"));
 			} catch (Throwable e) {
