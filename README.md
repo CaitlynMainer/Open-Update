@@ -1,5 +1,9 @@
 # Open-Update
 
+# DO NOT INCLUDE THIS SOURCE IN YOUR MOD! THIS WILL BREAK STUFF
+
+All you or your users need to install is http://ci.pc-logix.com/job/OpenUpdater/
+
 To register your mod with the OpenUpdater simply add the following block of code to your mods PreInit
 ```
 		if ((event.getSourceFile().getName().endsWith(".jar")) && event.getSide().isClient()) {
