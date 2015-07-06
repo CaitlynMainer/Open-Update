@@ -27,3 +27,5 @@ the format of latestbuild.xml is simply
 ```
 
 Lastly the changelog.txt is just a plaintext listing of changes if you want it displayed to the client.
+
+The file names don't matter, these are just examples.
