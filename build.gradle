@@ -39,6 +39,14 @@ jar.doFirst {
 		delete new File(sourceSets.main.output.classesDir, s);
 }
 
+task deobfJar(type: Jar, dependsOn: 'jar') {
+    from "build/source/main"
+    classifier "dev"
+}
+artifacts {
+    archives deobfJar
+}
+
 jar.classifier = "${ext.buildNumber}"
 
 processResources {

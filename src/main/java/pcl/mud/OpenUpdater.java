@@ -121,10 +121,6 @@ public class OpenUpdater {
                     chat = new ChatComponentTranslation(e.getMc().getModId() + ".outdated");
                     chat.getChatStyle().setColor(EnumChatFormatting.RED);
                     sender.addChatMessage(chat);
-                } else {
-                    chat = new ChatComponentTranslation(e.getMc().getModId() + ".uptodate");
-                    chat.getChatStyle().setColor(EnumChatFormatting.DARK_GREEN);
-                    sender.addChatMessage(chat);
                 }
             } catch (Exception e1) {
                 failedCount++;
