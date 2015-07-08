@@ -1,13 +1,17 @@
 package pcl.mud.gui;
 
 import cpw.mods.fml.common.Loader;
+import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.ModContainer;
+import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.util.StatCollector;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.GL11;
 
@@ -69,7 +73,24 @@ public class GuiChangelogDownload extends GuiScreen
     public GuiChangelogDownload(){
         this(null);
     }
-
+    
+    public static final Logger logger = LogManager.getFormatterLogger("OpenUpdaer");
+    
+	@EventHandler
+	public void preInit(FMLPreInitializationEvent event) {
+		if ((event.getSourceFile().getName().endsWith(".jar")) && event.getSide().isClient()) {
+			logger.info("Registering mod with OpenUpdater");
+			try {
+				Class.forName("pcl.mud.OpenUpdater").getDeclaredMethod("registerMod", ModContainer.class, URL.class, URL.class).invoke(null, FMLCommonHandler.instance().findContainerFor(this), 
+						new URL("http://PC-Logix.com/OpenUpdater/get_latest_build.php?mcver=1.7.10"), 
+						new URL("http://PC-Logix.com/OpenUpdater/changelog.php?mcver=1.7.10"));
+			} catch (Throwable e) {
+				logger.info("OpenUpdater is not installed, not registering.");
+			}
+		}
+	}
+    
+    
     @Override
     public void initGui()
     {
